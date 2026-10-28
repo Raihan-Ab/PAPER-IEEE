@@ -10,8 +10,8 @@ The study fine-tunes `bert-base-uncased` and `roberta-base` for three-class sent
 |---|---|
 | `RAW DATA.xlsx` | Raw reviews collected on 10 November 2025 from the game's public Steam review page (8,910 rows; app ID 2358720), covering August 2024 to November 2025. Sorted by Steam's "most helpful" ranking with the English filter. |
 | `DATA SENTIMEN.xlsx` | Preprocessed review text (`Text`) and the final manual sentiment label (`Sentimen`: Positif, Negatif, Netral), 6,377 rows before deduplication. |
-| `anotasi ulang.xlsx` | Inter-annotator agreement sample: 400 reviews drawn at random from the 5,042 deduplicated reviews and labeled independently by three additional annotators (`Anotasi` sheet). The original labels are in the `Kunci` sheet. |
-| `sentiment seri.xlsx` | The 19 reviews from the agreement sample that were tied 2–2 among the four annotators, with the label agreed after discussion. |
+| `anotasi ulang.xlsx` | Inter-annotator agreement sample: 400 reviews drawn at random from the 5,042 deduplicated reviews and relabeled independently by the three co-annotators (`Anotasi` sheet). The original labels are in the `Kunci` sheet. |
+| `sentiment seri.xlsx` | The 19 reviews from the agreement sample that were tied 2–2 between the three relabelings and the final label, with the label agreed after discussion. |
 | `cek bahasa.xlsx` | Manual check of 100 random reviews flagged as non-English by the `lingua` language detector. |
 | `Code.ipynb` | Complete experiment notebook (Google Colab, NVIDIA T4 GPU). |
 
@@ -41,7 +41,7 @@ User identifiers (account names, profile URLs, avatars and product counts) were 
 
 The final dataset is split 80:10:10 into training, validation and test sets (stratified, seed 42): 4,033 / 504 / 505 reviews.
 
-**Labels.** All reviews were labeled by one annotator. A review is *positive* if it mainly conveys satisfaction or praise, *negative* if it mainly conveys dissatisfaction or criticism, and *neutral* otherwise (including memes, jokes and off-topic text). Sarcasm is labeled according to its intended meaning. On the random 400-review agreement sample, Fleiss' κ across four annotators is 0.70.
+**Labels.** All reviews were labeled by four annotators; only the final labels were retained. A review is *positive* if it mainly conveys satisfaction or praise, *negative* if it mainly conveys dissatisfaction or criticism, and *neutral* otherwise (including memes, jokes and off-topic text). Sarcasm is labeled according to its intended meaning. To assess reliability, the three co-annotators relabeled a random sample of 400 reviews without seeing the final labels; Fleiss' κ between their relabelings and the final labels is 0.70.
 
 ## Running the experiments
 
